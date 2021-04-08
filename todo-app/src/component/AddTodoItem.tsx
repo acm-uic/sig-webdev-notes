@@ -4,16 +4,20 @@ import { TodoItem } from '../model/TodoItem'
 export const AddTodoItem: React.FC<{ fn: (todo: TodoItem) => void }> = ({ fn }) => {
     const [todo, setTodo] = useState('')
 
+    const handleInput: React.KeyboardEventHandler<HTMLInputElement> = (event) => {
+        if (event.key === 'Enter') {
+            fn({ name: todo, done: false })
+            setTodo('')
+        }
+    }
+
+    const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+        setTodo(event.target.value)
+    }
+
     return (
         <>
-            <input
-                type="text"
-                value={todo}
-                onChange={(event: any) => {
-                    setTodo(event.target.value)
-                }}
-            />
-            <button onClick={() => fn({ name: todo, done: false })}>Add Todo</button>
+            <input style={{ padding: 10 }} type="text" value={todo} onChange={handleChange} onKeyPress={handleInput} />
         </>
     )
 }
