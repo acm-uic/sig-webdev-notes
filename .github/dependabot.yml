@@ -6,6 +6,11 @@
 version: 2
 updates:
   - package-ecosystem: 'npm'
-    directory: '/'
+    directory: '/todo-app/'
+    schedule:
+      interval: 'daily'
+      
+  - package-ecosystem: 'npm'
+    directory: '/data-demo/'
     schedule:
       interval: 'daily'
